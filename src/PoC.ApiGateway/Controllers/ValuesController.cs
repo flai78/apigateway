@@ -12,9 +12,11 @@ namespace PoC.ApiGateway.Controllers
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IDictionary<string,string>> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            var headers = HttpContext.Request.Headers.ToDictionary(h => h.Key, h => h.Value.ToString());
+            return  headers;
         }
 
         // GET api/values/5
